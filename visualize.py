@@ -43,7 +43,7 @@ def visualize(embed, x_test, y_test):
 if __name__ == "__main__":
 
     mnist = input_data.read_data_sets('MNIST_data', one_hot=False)
-    x_test = mnist.test.images
+    x_test = mnist.test.data
     y_test = mnist.test.labels
     x_test = x_test.reshape([-1, 28, 28])
 
