@@ -1,3 +1,4 @@
+# coding:utf8
 """ Siamese implementation using Tensorflow with MNIST example.
 This siamese network embeds a 28x28 image (a point in 784D)
 into a point in 2D.
@@ -28,7 +29,7 @@ mnist = input_data.read_data_sets('MNIST_data', one_hot=False)
 sess = tf.InteractiveSession()
 
 # setup siamese network
-siamese = inference.siamese();
+siamese = inference.siamese()
 train_step = tf.train.GradientDescentOptimizer(0.01).minimize(siamese.loss)
 saver = tf.train.Saver()
 tf.initialize_all_variables().run()
@@ -47,7 +48,7 @@ if os.path.isfile(model_ckpt):
 if load:
     saver.restore(sess, 'model_save/model_cnn')
 mnist.train.epochs_completed
-for step in range(10000):
+for step in range(10):
     batch_x1, batch_y1 = mnist.train.next_batch(128)
     batch_x2, batch_y2 = mnist.train.next_batch(128)
     batch_y = (batch_y1 == batch_y2).astype('float')
@@ -74,8 +75,10 @@ for step in range(10000):
         embed.tofile('model_save/embed.txt')
 
 # visualize result
-embed = siamese.o1.eval({siamese.x1: mnist.test.images})
+embed1 = siamese.o1.eval({siamese.x1: mnist.test.images[:100]})
+embed2 = siamese.o2.eval({siamese.x2: mnist.test.images[:100]})
 
+print(embed1==embed2)
 x_test = mnist.test.images.reshape([-1, 28, 28])
 y_test = mnist.test.labels
 visualize.visualize(embed, x_test, y_test)

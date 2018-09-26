@@ -2,7 +2,7 @@
 
 This repositories is forked from [ywpkwon/siamese_tf_mnist](https://github.com/ywpkwon/siamese_tf_mnist).
 
-For this repositories, the CNN is added to this siamese network part. The following picture is the visualization of the testing dataset of mnist after the 100000 training steps.
+For this repositories, the **CNN** part is added to this siamese network part. The following picture is the visualization of the testing dataset of mnist after the 100000 training steps.
 <p align="center"> <img src="./result.png" width="600"> </p>
 
 I kept codes minimal for my personal experiments (e.g., different architectures or loss functions).
