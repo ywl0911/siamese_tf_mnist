@@ -48,7 +48,7 @@ if os.path.isfile(model_ckpt):
 if load:
     saver.restore(sess, 'model_save/model_cnn')
 mnist.train.epochs_completed
-for step in range(10):
+for step in range(1000):
     batch_x1, batch_y1 = mnist.train.next_batch(128)
     batch_x2, batch_y2 = mnist.train.next_batch(128)
     batch_y = (batch_y1 == batch_y2).astype('float')
